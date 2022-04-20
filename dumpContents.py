@@ -37,7 +37,7 @@ headers = {
 }
 contents_list = requests.get(os.environ['MICROCMS_URL'] + '/api/v1/blog?limit=100&orders=-date', headers=headers).json()
 
-with open('./contents.json', 'w') as f:
+with open('./output/contents.json', 'w') as f:
     json.dump(contents_list, f, ensure_ascii=False, indent=4)
 
 # for count in range(contents_list['totalCount']):
