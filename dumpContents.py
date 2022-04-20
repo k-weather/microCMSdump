@@ -35,7 +35,7 @@ def getBanner(content) -> str:
 headers = {
     "X-MICROCMS-API-KEY": os.environ['MICROCMS_API_KEY']
 }
-contents_list = requests.get('https://k-weather.microcms.io/api/v1/blog?limit=100&orders=-date', headers=headers).json()
+contents_list = requests.get(os.environ['MICROCMS_URL'] + '/api/v1/blog?limit=100&orders=-date', headers=headers).json()
 
 with open('./contents.json', 'w') as f:
     json.dump(contents_list, f, ensure_ascii=False, indent=4)
