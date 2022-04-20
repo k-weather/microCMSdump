@@ -37,4 +37,4 @@ jobs:
           aws-region: ap-northeast-1
 
       - name: Sync
-        run: aws s3 sync . s3://www.k-weather.com
+        run: aws s3 sync contents.json s3://www.k-weather.com
