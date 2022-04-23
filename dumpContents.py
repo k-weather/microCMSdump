@@ -40,6 +40,16 @@ contents_list = requests.get(os.environ['MICROCMS_URL'] + '/api/v1/blog?limit=10
 with open('./output/contents.json', 'w') as f:
     json.dump(contents_list, f, ensure_ascii=False, indent=4)
 
+category_list = []
+for count in range(contents_list['totalCount']):
+    for tag in contents_list['contents'][count]['category']:
+        category_list.append(tag['name'])
+category = set(category_list)
+output = dict()
+output['categories'] = list(category)
+with open('./output/categories.json', 'w') as f:
+    json.dump(output, f, ensure_ascii=False, indent=4)
+
 # for count in range(contents_list['totalCount']):
 #     content = contents_list['contents'][count]
 #     with open('./content/blog/' + content['id'] + ".md", 'w') as f:
