@@ -32,6 +32,12 @@ jobs:
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }} 
           MICROCMS_URL: ${{ secrets.MICROCMS_URL }}   
 
+      - name: Get Photos from microCMS
+        run: python ./photoList.py
+        env: 
+          MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }} 
+          MICROCMS_URL: ${{ secrets.MICROCMS_URL }}   
+
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -40,4 +46,4 @@ jobs:
           aws-region: ap-northeast-1
 
       - name: Sync
-        run: aws s3 sync ./output s3://www.k-weather.com --size-only
+        run: aws s3 sync ./output s3://www.k-weather.com
